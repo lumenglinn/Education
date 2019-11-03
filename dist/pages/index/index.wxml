@@ -1,6 +1,0 @@
-<block wx:if="{{$taroCompReady}}">
-    <view class="index-page">111
-        <view bindtap="playMusic">播放</view>
-        <view bindtap="pauseMusic">暂停</view>
-    </view>
-</block>
