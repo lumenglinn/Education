@@ -1,7 +1,7 @@
 /*
  * @Descripttion: 首页
  * @Date: 2019-08-10 21:10:21
- * @LastEditTime: 2019-10-27 20:52:02
+ * @LastEditTime: 2019-11-03 14:27:39
  */
 import { getHomeSetting, getList } from '../services/index';
 
@@ -15,7 +15,7 @@ export default {
 
   subscriptions: {
     setup({dispatch, history}) {
-      // dispatch({type: 'getHomeSetting'});
+      dispatch({type: 'getHomeSetting'});
     }
   },
 

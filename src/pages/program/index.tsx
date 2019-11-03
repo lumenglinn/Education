@@ -1,18 +1,15 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { connect } from '@tarojs/redux'
-import { View, ScrollView } from '@tarojs/components'
-import ListItem from './listItem'
+import { AtButton, AtIcon } from 'taro-ui'
+import { View, Image } from '@tarojs/components'
 import './index.scss'
 const backgroundAudioManager = Taro.getBackgroundAudioManager()
 
-@connect(({ index }) => ({
-  ...index,
-}))
+// @connect(({ index }) => ({
+//   ...index,
+// }))
 export default class Index extends Component {
-
   state = {
-    searchValue: '',
-    pageNo: 1,
     isPlaying: false
   }
 
@@ -30,6 +27,12 @@ export default class Index extends Component {
   componentWillMount() { }
 
   componentDidMount() {
+    Taro.setNavigationBarColor({
+      frontColor: '#ffffff'
+      backgroundColor: '#333333'
+    }).then(() => {
+      console.log('设置成功！')
+    })
     // this.getList();
 
     // Taro.getBackgroundAudioPlayerState({
@@ -58,7 +61,7 @@ export default class Index extends Component {
     // backgroundAudioManager.onPause(() => {
     //   this.onPause()
     // })
-   
+
 
   }
 
@@ -69,10 +72,7 @@ export default class Index extends Component {
   componentDidHide() { }
 
   pauseMusic() {
-    backgroundAudioManager.pause()
-    // this.setState({
-    //   isPlaying: false
-    // })
+    backgroundAudioManager.pause();
   }
 
   playMusic() {
@@ -80,19 +80,44 @@ export default class Index extends Component {
     backgroundAudioManager.coverImgUrl = 'http://p3.music.126.net/F-jS8NF3bLRzUZe18iJsrA==/109951164448921992.jpg'
     backgroundAudioManager.src = 'http://music.163.com/song/media/outer/url?id=476592630.mp3'
     backgroundAudioManager.play()
-    // this.setState({
-    //   isPlaying: true
-    // })
   }
 
+  handleMusic() {
+    const { isPlaying } = this.state;
+    if (isPlaying) {
+      this.pauseMusic();
+    } else {
+      this.playMusic();
+    }
+    this.setState({
+      isPlaying: !isPlaying
+    })
+  }
 
   render() {
-
+    const { isPlaying } = this.state;
     return (
-      <View className='index-page'>
-        111
-        <View onClick={this.playMusic}>播放</View>
-        <View onClick={this.pauseMusic}>暂停</View>
+      <View className='program-page'>
+        <Image
+          className='pro-img'
+          src="https://pic.qingting.fm/channel/2019/10/16/c887b4b66c77d25204c289104c2649c6.jpg!400"
+        />
+        <View className="progress"></View>
+        <View className="pro-title">乱世枭雄 第一回</View>
+        {/* <View className="pro-detail"> */}
+        <View className="button-group">
+          <AtIcon value='prev' size='24' color='#fff'></AtIcon>
+          <View className="play-pause" onClick={this.handleMusic}>
+            {
+              isPlaying ? <AtIcon value='pause' size='26' color='#fff'></AtIcon>
+                        : <AtIcon value='play' size='30' className="btn-play" color='#fff'></AtIcon>
+            }
+            
+          </View>
+          <AtIcon value='next' size='24' color='#fff'></AtIcon>
+        </View>
+        {/* <View onClick={this.playMusic}>播放</View> */}
+        <AtButton type='primary' openType="share" className="btn-share" size='normal'>分享好友</AtButton>
       </View>
     )
   }

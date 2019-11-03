@@ -1,9 +1,7 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { connect } from '@tarojs/redux'
-import { View, Image, ScrollView } from '@tarojs/components'
-import { AtSearchBar } from 'taro-ui'
+import { View, ScrollView } from '@tarojs/components'
 import Banner from './banner'
-import NavList from './navList'
 import Recommend from './recommend'
 import './index.scss'
 
@@ -89,13 +87,13 @@ export default class Index extends Component {
           style={`height: 667px;`}
           onScrollToLower={this.getList}
         >
-          <AtSearchBar
+          {/* <AtSearchBar
             className='home-banner'
             value={searchValue}
             onChange={this.onChange.bind(this)}
-          />
+          /> */}
           <Banner bannerList={bannerList}/>
-          <NavList navList={navList}/>
+          {/* <NavList navList={navList}/>
           {
             !!adList[0] && <View onClick={this.toPage.bind(this, `/pages/detail/index?id=${adList[0].id}`)}>
             <Image
@@ -103,7 +101,7 @@ export default class Index extends Component {
               src={adList[0].picUrl}
             />
           </View>
-          }
+          } */}
           <Recommend data={records} />
         </ScrollView>
       </View>

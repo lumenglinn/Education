@@ -32,8 +32,9 @@ export default function Banner() {
             return <SwiperItem key={`banner_${i}`} onClick={handleClick.bind(this, item.id)}>
             <Image
               className='banner-item-img'
-              src={item.picUrl}
+              src="http://pic.qingting.fm/rms/2019/11/01/5c1d3824c0aa3e467c18f2077c0c72ec.jpg"
             />
+            {/* src={item.picUrl} */}
           </SwiperItem>
           })
         }

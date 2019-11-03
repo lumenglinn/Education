@@ -1,10 +1,8 @@
 import Taro, { Component, Config } from '@tarojs/taro'
 import { connect } from '@tarojs/redux'
-import { View } from '@tarojs/components'
-import Banner from './banner'
-import ProductInfo from './productInfo'
+import { View , ScrollView } from '@tarojs/components'
 import Introduce from './introduce'
-import Footer from './footer'
+import PlayList from './playList'
 import './index.scss'
 
 @connect(({ detail }) => ({
@@ -36,13 +34,20 @@ export default class Detail extends Component {
 
   render() {
     const { proDetail } = this.props;
-    const { bannerUrl, detail } = proDetail;
+    // const { bannerUrl, detail } = proDetail;
     return (
       <View className='detail-page'>
-        <Banner data={bannerUrl}/>
-        <ProductInfo data={proDetail}/>
-        <Introduce data={detail}/>
-        <Footer />
+        <Introduce />
+        {/* <ScrollView
+          scrollY
+          scrollWithAnimation
+          lowerThreshold={50}
+          style={`height: 667px;`}
+          onScrollToLower={() => {console.log(111)}}
+        > */}
+          <PlayList />
+        {/* </ScrollView> */}
+        
       </View>
     )
   }
